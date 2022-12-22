@@ -303,7 +303,7 @@ def main():
                      option4 + '】×【' + answer + '】です！')
             twitter2 = """
                 <a href="http://twitter.com/intent/tweet" class="twitter-share-button"
-                data-text=" """ + option3 + """におすすめの機材の組み合わせは、【""" + option4 + """ × """ + answer + """】です！ #音声配信の機材ラボ"
+                data-text=" 【""" + option3 + """】におすすめの機材の組み合わせは、【""" + option4 + """】 × 【""" + answer + """】です！ #音声配信の機材ラボ"
                 data-url="https://deiko0-audio-labo-app-oscfw3.streamlit.app"
                 Tweet
                 </a>
