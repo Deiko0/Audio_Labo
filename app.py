@@ -30,7 +30,7 @@ GRAPH_HEIGHT = 300
 connection = connect(":memory:")
 cursor = connection.cursor()
 
-sheet_url = "https://docs.google.com/spreadsheets/d/1SmbwnpZnnQFSxOpguknEvZJqNp93xdhVLSIAOjBFYYY/edit?usp=sharing"
+sheet_url = st.secrets["private_gsheets_url"]
 query = f'SELECT * FROM "{sheet_url}"'
 
 
