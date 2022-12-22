@@ -200,7 +200,30 @@ def _set_block_container_style(max_width: int = GRAPH_WIDTH + 100, max_width_100
         </style>""", unsafe_allow_html=True)
 
 
+@st.cache(allow_output_mutation=True)
+def get_base64_of_bin_file(bin_file):
+    with open(bin_file, 'rb') as f:
+        data = f.read()
+    return base64.b64encode(data).decode()
+
+
+def set_png_as_page_bg(png_file):
+    bin_str = get_base64_of_bin_file(png_file)
+    page_bg_img = '''
+    <style>
+    body {
+    background-image: url("data:image/png;base64,%s");
+    background-size: cover;
+    }
+    </style>
+    ''' % bin_str
+
+    st.markdown(page_bg_img, unsafe_allow_html=True)
+    return
+
+
 def main():
+    add_bg_from_url()
     st.title('音声配信の機材ラボ')
     st.write('create by Deiko')
     st.markdown("---")
@@ -276,10 +299,11 @@ def main():
 
         if option3 != '' and option4 != '':
             answer = recommend2(option3, option4)
-            st.write('【' + option1 + '】におすすめの機材の組み合わせは、【' + option2 + '】×【' + answer + '】です！')
+            st.write('【' + option3 + '】におすすめの機材の組み合わせは、【' +
+                     option4 + '】×【' + answer + '】です！')
             twitter2 = """
                 <a href="http://twitter.com/intent/tweet" class="twitter-share-button"
-                data-text=" """ + option1+ """におすすめの機材の組み合わせは、【""" + option2 + """ × """ + answer + """】です！ #音声配信の機材ラボ"
+                data-text=" """ + option1 + """におすすめの機材の組み合わせは、【""" + option2 + """ × """ + answer + """】です！ #音声配信の機材ラボ"
                 data-url="https://deiko0-audio-labo-app-oscfw3.streamlit.app"
                 Tweet
                 </a>
@@ -299,18 +323,18 @@ def main():
         st.header("使用オーディオインターフェイスの構成比")
         st.image(img)
         twitter = """
-        <a href="http://twitter.com/intent/tweet" class="twitter-share-button"
-        data-text="#音声配信の機材ラボ"
-        data-url="https://deiko0-audio-labo-app-oscfw3.streamlit.app"
-        Tweet
-        </a>
-        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-        """
+            <a href="http://twitter.com/intent/tweet" class="twitter-share-button"
+            data-text="#音声配信の機材ラボ"
+            data-url="https://deiko0-audio-labo-app-oscfw3.streamlit.app"
+            Tweet
+            </a>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            """
         components.html(twitter)
         st.markdown("---")
 
 
 if __name__ == "__main__":
     _set_block_container_style()
+    set_png_as_page_bg('bg.png')
     main()
-    
