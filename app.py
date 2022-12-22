@@ -202,6 +202,15 @@ def _set_block_container_style(max_width: int = GRAPH_WIDTH + 100, max_width_100
 def main():
     st.title('音声配信の機材ラボ')
     st.write('create by Deiko')
+    twitter = """
+        <a href="http://twitter.com/intent/tweet" class="twitter-share-button"
+        data-text="#音声配信の機材ラボ"
+        data-url="https://deiko0-audio-labo-app-oscfw3.streamlit.app"
+        Tweet
+        </a>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        """
+    components.html(twitter)
     st.markdown("---")
 
     href = f'<a href="https://forms.gle/tYUKZXwvVPRMKNH17">Googleフォーム</a>'
@@ -252,7 +261,7 @@ def main():
             twitter1 = """
                 <a href="http://twitter.com/intent/tweet" class="twitter-share-button"
                 data-text="あなたに向いてる音声配信は、【""" + answer + """】です！ #音声配信の機材ラボ"
-                data-url="https://deiko0-voice-analysis-app-m0fgp5.streamlit.app"
+                data-url="https://deiko0-audio-labo-app-oscfw3.streamlit.app"
                 Tweet
                 </a>
                 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -279,7 +288,7 @@ def main():
             twitter2 = """
                 <a href="http://twitter.com/intent/tweet" class="twitter-share-button"
                 data-text=" """ + option1+ """におすすめの機材の組み合わせは、【""" + option2 + """ × """ + answer + """】です！ #音声配信の機材ラボ"
-                data-url="https://deiko0-voice-analysis-app-m0fgp5.streamlit.app"
+                data-url="https://deiko0-audio-labo-app-oscfw3.streamlit.app"
                 Tweet
                 </a>
                 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
