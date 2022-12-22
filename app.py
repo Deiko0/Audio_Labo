@@ -223,7 +223,6 @@ def set_png_as_page_bg(png_file):
 
 
 def main():
-    add_bg_from_url()
     st.title('音声配信の機材ラボ')
     st.write('create by Deiko')
     st.markdown("---")
