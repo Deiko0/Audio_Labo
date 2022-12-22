@@ -198,21 +198,20 @@ def _set_block_container_style(max_width: int = GRAPH_WIDTH + 100, max_width_100
         padding-bottom: {padding_bottom}rem;
         }}
         </style>""", unsafe_allow_html=True)
-
-def add_bg_from_local(image_file):
-    with open(image_file, "rb") as image_file:
-        encoded_string = base64.b64encode(image_file.read())
+    
+def add_bg_from_url():
     st.markdown(
-    f"""
-    <style>
-    .stApp {{
-        background-image: url(data:image/{"png"};base64,{encoded_string.decode()});
-        background-size: cover
-    }}
-    </style>
-    """,
-    unsafe_allow_html=True
-    )
+         f"""
+         <style>
+         .stApp {{
+             background-image: url("imgae/bg.png");
+             background-attachment: fixed;
+             background-size: cover
+         }}
+         </style>
+         """,
+         unsafe_allow_html=True
+     )
 
 
 def main():
@@ -328,4 +327,5 @@ def main():
 if __name__ == "__main__":
     _set_block_container_style()
     main()
-    add_bg_from_local('bg.png')    
+    add_bg_from_url()
+    
