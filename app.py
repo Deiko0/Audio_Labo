@@ -9,13 +9,12 @@ import matplotlib.pyplot as plt
 import japanize_matplotlib
 import base64
 from PIL import Image
-from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import LabelEncoder
 
 
 st.set_page_config(
-    page_title="音声配信者の機材ラボ",
+    page_title="音声配信の機材ラボ",
     menu_items={
         'Get Help': 'https://twitter.com/deiko_cs',
         'Report a bug': "https://twitter.com/deiko_cs",
