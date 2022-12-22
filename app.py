@@ -46,7 +46,7 @@ def draw_graph(df, kizai):
     offsets = np.zeros(n_rows, dtype=count.values.dtype)
     colors = plt.get_cmap("tab20_r")(np.linspace(0, 1, n_cols))
 
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(7,5))
     ax.set_yticks(positions)
     ax.set_yticklabels(count.index)
 
@@ -67,7 +67,7 @@ def draw_graph(df, kizai):
 
     plt.tick_params(length=0)
     plt.xticks(color="None")
-    plt.subplots_adjust(left=0.15, right=0.99, bottom=0.3, top=0.99)
+    plt.subplots_adjust(left=0.13, right=0.99, bottom=0.36, top=0.99)
     fig.canvas.draw()
     data = fig.canvas.tostring_rgb()
     w, h = fig.canvas.get_width_height()
@@ -302,7 +302,7 @@ def main():
                      option4 + '】×【' + answer + '】です！')
             twitter2 = """
                 <a href="http://twitter.com/intent/tweet" class="twitter-share-button"
-                data-text=" 【""" + option3 + """】におすすめの機材の組み合わせは、【""" + option4 + """】 × 【""" + answer + """】です！ #音声配信の機材ラボ"
+                data-text=" """ + option1 + """におすすめの機材の組み合わせは、【""" + option2 + """ × """ + answer + """】です！ #音声配信の機材ラボ"
                 data-url="https://deiko0-audio-labo-app-oscfw3.streamlit.app"
                 Tweet
                 </a>
