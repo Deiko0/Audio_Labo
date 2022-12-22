@@ -15,7 +15,7 @@ from sklearn.preprocessing import LabelEncoder
 
 
 st.set_page_config(
-    page_title="音声配信者の機材サポート",
+    page_title="音声配信者の機材ラボ",
     menu_items={
         'Get Help': 'https://twitter.com/deiko_cs',
         'Report a bug': "https://twitter.com/deiko_cs",
