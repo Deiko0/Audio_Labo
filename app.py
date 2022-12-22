@@ -215,6 +215,7 @@ def add_bg_from_url():
 
 
 def main():
+    add_bg_from_url()
     st.title('音声配信の機材ラボ')
     st.write('create by Deiko')
     twitter = """
@@ -327,5 +328,4 @@ def main():
 if __name__ == "__main__":
     _set_block_container_style()
     main()
-    add_bg_from_url()
     
