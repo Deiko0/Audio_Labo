@@ -198,35 +198,11 @@ def _set_block_container_style(max_width: int = GRAPH_WIDTH + 100, max_width_100
         padding-bottom: {padding_bottom}rem;
         }}
         </style>""", unsafe_allow_html=True)
-    
-def add_bg_from_url():
-    st.markdown(
-         f"""
-         <style>
-         .stApp {{
-             background-image: url("imgae/bg.png");
-             background-attachment: fixed;
-             background-size: cover
-         }}
-         </style>
-         """,
-         unsafe_allow_html=True
-     )
 
 
 def main():
-    add_bg_from_url()
     st.title('音声配信の機材ラボ')
     st.write('create by Deiko')
-    twitter = """
-        <a href="http://twitter.com/intent/tweet" class="twitter-share-button"
-        data-text="#音声配信の機材ラボ"
-        data-url="https://deiko0-audio-labo-app-oscfw3.streamlit.app"
-        Tweet
-        </a>
-        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-        """
-    components.html(twitter)
     st.markdown("---")
 
     href = f'<a href="https://forms.gle/tYUKZXwvVPRMKNH17">Googleフォーム</a>'
@@ -322,6 +298,15 @@ def main():
         img = draw_graph(df, 'Audio')
         st.header("使用オーディオインターフェイスの構成比")
         st.image(img)
+        twitter = """
+        <a href="http://twitter.com/intent/tweet" class="twitter-share-button"
+        data-text="#音声配信の機材ラボ"
+        data-url="https://deiko0-audio-labo-app-oscfw3.streamlit.app"
+        Tweet
+        </a>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        """
+        components.html(twitter)
         st.markdown("---")
 
 
