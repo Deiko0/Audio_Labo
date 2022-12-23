@@ -78,7 +78,10 @@ def draw_graph(df, kizai):
     w, h = fig.canvas.get_width_height()
     c = len(data) // (w * h)
     img = Image.frombytes("RGB", (w, h), data, "raw")
-    return img
+    multi = count.sum().idxmax()
+    count = count.iloc[::-1].idxmax(axis=1)
+    countDf = pd.DataFrame(count)
+    return img,countDf,multi
 
 
 @st.cache
@@ -257,12 +260,13 @@ def main():
     df = df.drop(['MicOthers', 'AudioOthers'], axis=1)
 
     tab1, tab2, tab3 = st.tabs(
-        ["💻 適職診断", "👪 先人の知恵", "🎤 機材の比率"])
+        ["💻 適職診断", "👪 先人の知恵", "🎤 人気の機材"])
 
     col1, col2 = st.columns(2)
     with tab1:
         st.markdown("---")
         st.header('【音声配信の適職診断】')
+        st.write('実際の配信者さんのデータと照合して、マッチする配信を判定します！')
         st.write('① マイクとオーディオインターフェイスを選択')
         st.write('② あなたに向いてる音声配信を判定！')
         st.write('')
@@ -292,6 +296,7 @@ def main():
     with tab2:
         st.markdown("---")
         st.header('【先人配信者たちの知恵】')
+        st.write('実際の配信者さんのデータで、多数決のように機材を提案します！')
         st.write('① メイン活動と機材を選択')
         st.write('② 機材の組み合わせを提案！')
         st.write('')
@@ -318,14 +323,20 @@ def main():
         st.markdown("---")
 
     with tab3:
-        img = draw_graph(df, 'Mic')
+        img,countDf,multi = draw_graph(df, 'Mic')
         st.markdown("---")
-        st.header("使用マイクの構成比")
+        st.header("マイクカテゴリ")
         st.image(img)
+        col1, col2 = st.columns(2)
+        col2.write('音声配信でマルチに使えるマイクは、【'+ multi +'】です！')
+        col1.dataframe(countDf.set_axis(['１番人気'], axis='columns'))
         st.markdown("---")
-        img = draw_graph(df, 'Audio')
-        st.header("使用オーディオインターフェイスの構成比")
+        img,countDf,multi = draw_graph(df, 'Audio')
+        st.header("オーディオインターフェイスカテゴリ")
         st.image(img)
+        col3, col4 = st.columns(2)
+        col4.write('音声配信でマルチに使えるオーディオインターフェイスは、【'+ multi +'】です！')
+        col3.dataframe(countDf.set_axis(['１番人気'], axis='columns'))
         twitter = """
             <a href="http://twitter.com/intent/tweet" class="twitter-share-button"
             data-text="#音声配信の機材ラボ"
