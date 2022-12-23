@@ -302,12 +302,12 @@ def main():
         option4 = col4.selectbox('マイク or オーディオインターフェイスを入力', MicAudio)
 
         if option3 != '' and option4 != '':
-            answer = recommend2(option3, option4)
+            answer2 = recommend2(option3, option4)
             st.write('【' + option3 + '】におすすめの機材の組み合わせは、【' +
-                     option4 + '】×【' + answer + '】です！')
+                     option4 + '】×【' + answer2 + '】です！')
             twitter2 = """
                 <a href="http://twitter.com/intent/tweet" class="twitter-share-button"
-                data-text=" """ + option1 + """におすすめの機材の組み合わせは、【""" + option2 + """ × """ + answer + """】です！ #音声配信の機材ラボ"
+                data-text=" """ + option3 + """におすすめの機材の組み合わせは、【""" + option4 + """ × """ + answer2 + """】です！ #音声配信の機材ラボ"
                 data-url="https://deiko0-audio-labo-app-oscfw3.streamlit.app"
                 Tweet
                 </a>
