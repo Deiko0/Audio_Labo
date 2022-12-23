@@ -62,7 +62,12 @@ def draw_graph(df, kizai):
                 ax.text(cx, cy, f"{value*100:.1f}%",
                         color="k", ha="center", va="center")
 
-    ax.legend(ncol=2, bbox_to_anchor=(0, -0.1),
+    colNum = 2
+
+    if kizai == 'Mic':
+        colNum = 3
+
+    ax.legend(ncol=colNum, bbox_to_anchor=(0, -0.1),
               loc='upper left', borderaxespad=0)
 
     plt.tick_params(length=0)
