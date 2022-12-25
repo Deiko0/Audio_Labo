@@ -79,9 +79,13 @@ def draw_graph(df, kizai):
     c = len(data) // (w * h)
     img = Image.frombytes("RGB", (w, h), data, "raw")
     multi = count.sum().idxmax()
-    count = count.iloc[::-1].idxmax(axis=1)
-    countDf = pd.DataFrame(count)
-    return img,countDf,multi
+    countDf = pd.DataFrame(count.iloc[::-1])
+    rankDf = pd.DataFrame()
+    rankDf['１位'] = countDf.columns[countDf.values.argsort(1)[:, -1]]
+    rankDf['２位'] = countDf.columns[countDf.values.argsort(1)[:, -2]]
+    rankDf['３位'] = countDf.columns[countDf.values.argsort(1)[:, -3]]
+    rankDf.index = countDf.index
+    return img,rankDf,multi
 
 
 @st.cache
@@ -323,20 +327,18 @@ def main():
         st.markdown("---")
 
     with tab3:
-        img,countDf,multi = draw_graph(df, 'Mic')
+        img,rankDf,multi = draw_graph(df, 'Mic')
         st.markdown("---")
         st.header("マイクカテゴリ")
         st.image(img)
-        col1, col2 = st.columns(2)
-        col2.write('音声配信でマルチに使えるマイクは、【'+ multi +'】です！')
-        col1.dataframe(countDf.set_axis(['１番人気'], axis='columns'))
+        st.dataframe(rankDf)
+        st.write('データ集計の結果、音声配信でマルチに使えるマイクは、【'+ multi +'】です！')
         st.markdown("---")
-        img,countDf,multi = draw_graph(df, 'Audio')
+        img,rankDf,multi = draw_graph(df, 'Audio')
         st.header("オーディオインターフェイスカテゴリ")
         st.image(img)
-        col3, col4 = st.columns(2)
-        col4.write('音声配信でマルチに使えるオーディオインターフェイスは、【'+ multi +'】です！')
-        col3.dataframe(countDf.set_axis(['１番人気'], axis='columns'))
+        st.dataframe(rankDf)
+        st.write('データ集計の結果、音声配信でマルチに使えるオーディオインターフェイスは、【'+ multi +'】です！')
         twitter = """
             <a href="http://twitter.com/intent/tweet" class="twitter-share-button"
             data-text="#音声配信の機材ラボ"
