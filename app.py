@@ -242,7 +242,6 @@ def main():
     href = f'<a href="https://forms.gle/tYUKZXwvVPRMKNH17">Googleフォーム</a>'
     st.markdown(
         f'<span style="font-size:16px">あなたの使用機材を登録する ▶︎ {href}</span>', unsafe_allow_html=True)
-    st.write('登録すると有料の「音声EQのハンドブック」（PDF）がもらえます！')
     st.markdown("---")
 
     row_list = []
